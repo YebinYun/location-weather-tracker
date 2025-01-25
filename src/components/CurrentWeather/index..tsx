@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import "./index.css";
+import useGeolocation from "../../hooks/useGeolocation";
 
 // 사용자 위치 기반 현재 날씨를 알려주는 컴포넌트
 const CurrentWeather = () => {
-  const [isbookmark, setIsBookmark] = useState(false);
+  const [isbookmark, setIsBookmark] = useState<boolean>(false);
   const bookmark = isbookmark ? "fluent-color:star-16" : "iconoir:star";
+  const { currentLocation, getLocation } = useGeolocation();
 
   return (
     <section className="current-weather">
@@ -13,8 +15,10 @@ const CurrentWeather = () => {
         <button onClick={() => setIsBookmark(!isbookmark)}>
           <Icon icon={bookmark} />
         </button>
-        <h2>마포구 상암동</h2>
-        <button>
+        <h2>
+          {currentLocation.city} {currentLocation.quarter}
+        </h2>
+        <button onClick={getLocation}>
           <Icon icon="lsicon:map-location-filled" />
         </button>
       </div>
