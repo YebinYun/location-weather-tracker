@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "module": "commonjs",
+    "jsx": "react-jsx"
+  },
+  "include": ["src", "declarations.d.ts"],
+  "exclude": ["node_modules"]
+}
