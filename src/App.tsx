@@ -1,6 +1,5 @@
-import React from "react";
 import "./App.css";
-import CurrentWeather from "./components/CurrentWeather";
+import CurrentWeather from "./components/CurrentWeather/index.";
 import WeeklyForecast from "./components/WeeklyForecast";
 import HourlyForecast from "./components/HourlyForecast";
 

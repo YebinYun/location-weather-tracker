@@ -58,6 +58,6 @@ a {
 }
 button {
   all: unset;
-  padding: 5px 20px;
+  padding: 0;
   cursor: pointer;
 }
