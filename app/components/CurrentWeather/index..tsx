@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import "./index.css";
 import useGeolocation from "../../hooks/useGeolocation";
@@ -10,6 +10,23 @@ const CurrentWeather = () => {
   const [isbookmark, setIsBookmark] = useState<boolean>(false);
   const bookmark = isbookmark ? "fluent-color:star-16" : "iconoir:star";
   const { currentLocation, getLocation } = useGeolocation();
+
+  const fetchWeatherData = async () => {
+    try {
+      const response = await fetch("/api/weather");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchWeatherData();
+  }, []);
 
   return (
     <section className="current-weather">
