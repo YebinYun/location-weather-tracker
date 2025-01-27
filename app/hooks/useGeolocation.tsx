@@ -16,7 +16,7 @@ const useGeolocation = () => {
     const data = await response.json();
     return {
       city: data.address.city || null,
-      quarter: data.address.quarter || null,
+      quarter: data.address.quarter || data.address.borough || null,
     };
   };
 
