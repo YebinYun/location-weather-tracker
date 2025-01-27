@@ -1,9 +1,9 @@
-import "./App.css";
+import "./styles/page.css";
 import CurrentWeather from "./components/CurrentWeather/index.";
 import WeeklyForecast from "./components/WeeklyForecast";
 import HourlyForecast from "./components/HourlyForecast";
 
-const App = () => {
+export default function Page() {
   return (
     <main className="app">
       <CurrentWeather />
@@ -11,6 +11,4 @@ const App = () => {
       <WeeklyForecast />
     </main>
   );
-};
-
-export default App;
+}
