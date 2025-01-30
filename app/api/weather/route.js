@@ -13,14 +13,13 @@ export async function GET() {
     pageNo: 1,
     numOfRows: 1000,
     dataType: "JSON",
-    base_date: 20250127,
+    base_date: 20250130,
     base_time: "0630",
     nx: 55,
     ny: 127,
   });
 
   try {
-    console.log("apiKey", apiKey);
     const response = await axios.get(`${url}?${params.toString()}`);
     return NextResponse.json(response.data);
   } catch (error) {

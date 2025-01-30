@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "^5.65.1",
+    "@tanstack/react-query-devtools": "^5.65.1",
+    "@tanstack/react-query-next-experimental": "^5.65.1",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "dotenv": "^16.4.7",
-    "next": "^15.1.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1"
+    "next": "^13.5.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
+    "recoil": "^0.7.7"
   },
   "scripts": {
     "dev": "next dev",

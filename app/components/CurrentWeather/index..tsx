@@ -1,32 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 import "./index.css";
-import useGeolocation from "../../hooks/useGeolocation";
+import useGetLocation from "../../lib/useGetLocation";
+import useGetWeather from "../../lib/useGetWeather";
+import useLocationStore from "../../store/useLocationStore";
 
 // 사용자 위치 기반 현재 날씨를 알려주는 컴포넌트
 const CurrentWeather = () => {
   const [isbookmark, setIsBookmark] = useState<boolean>(false);
   const bookmark = isbookmark ? "fluent-color:star-16" : "iconoir:star";
-  const { currentLocation, getLocation } = useGeolocation();
+  const { getLocation } = useLocationStore();
+  const { LocationData } = useGetLocation();
+  const { weatherData } = useGetWeather();
 
-  const fetchWeatherData = async () => {
-    try {
-      const response = await fetch("/api/weather");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchWeatherData();
-  }, []);
+  console.log("weatherData===>", weatherData);
 
   return (
     <section className="current-weather">
@@ -35,7 +24,7 @@ const CurrentWeather = () => {
           <Icon icon={bookmark} />
         </button>
         <h2>
-          {currentLocation.city} {currentLocation.quarter}
+          {LocationData?.city} {LocationData?.quarter}
         </h2>
         <button onClick={getLocation}>
           <Icon icon="lsicon:map-location-filled" />
