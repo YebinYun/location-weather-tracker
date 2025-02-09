@@ -1,11 +1,16 @@
 .app {
-  margin: 20px 40px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  height: 100%;
+  padding: 0;
   min-width: 260px;
 
   > section {
-    margin-bottom: 40px;
+    padding: 40px 0;
   }
   > section:last-child {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 }

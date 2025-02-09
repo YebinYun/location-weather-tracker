@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { atom, useRecoilState } from "recoil";
 
 export interface ILocationTypes {
-  latitude: number | null;
-  longitude: number | null;
+  latitude: number;
+  longitude: number;
 }
 
 export const locationState = atom<ILocationTypes>({
@@ -19,12 +19,9 @@ export const locationState = atom<ILocationTypes>({
 const useLocationStore = () => {
   const [location, setLocation] = useRecoilState(locationState);
   const getLocation = () => {
-    setLocation({
-      latitude: null,
-      longitude: null,
-    });
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((res) => {
+        if (!res) return;
         const { latitude, longitude } = res.coords;
         return setLocation({
           latitude: latitude,

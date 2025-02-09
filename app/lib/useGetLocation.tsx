@@ -1,7 +1,8 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import useLocationStore from "../store/useLocationStore";
+import { useMemo } from "react";
 
 interface LocationData {
   city?: string | null;
@@ -11,7 +12,12 @@ interface LocationData {
 
 const useGetLocation = () => {
   const { location } = useLocationStore();
-  const getLocationQuerykey = ["location"];
+
+  const getLocationQuerykey = useMemo(
+    () => ["location", location.latitude, location.longitude],
+    [location.latitude, location.longitude]
+  );
+
   const getLocationData = async (): Promise<LocationData> => {
     return await fetch(
       `https://nominatim.openstreetmap.org/reverse?lat=${location.latitude}&lon=${location.longitude}&format=json`
@@ -33,10 +39,9 @@ const useGetLocation = () => {
       });
   };
 
-  const { data: LocationData } = useQuery<LocationData>({
+  const { data: LocationData } = useSuspenseQuery<LocationData>({
     queryKey: getLocationQuerykey,
     queryFn: getLocationData,
-    enabled: !!location.latitude && !!location.longitude,
   });
 
   return { LocationData };

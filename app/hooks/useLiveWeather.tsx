@@ -24,7 +24,7 @@ const useLiveWeather = () => {
       liveWeather?.forEach((item) => {
         switch (item.category) {
           case "T1H":
-            updatedWeatherDataList.t1h = item.obsrValue + "℃"; // 기온
+            updatedWeatherDataList.t1h = item.obsrValue; // 기온
             break;
           case "RN1":
             updatedWeatherDataList.rn1 = item.obsrValue + "mm"; // 1시간 강수량

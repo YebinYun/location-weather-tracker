@@ -6,7 +6,11 @@
     "noEmit": true,
     "module": "commonjs",
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -21,6 +25,19 @@
       }
     ]
   },
-  "include": ["src/app", "declarations.d.ts", "src", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src",
+    "src/app",
+    "declarations.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.scss",
+    "**/*.css",
+    "**/*.js",
+    "**/*.jsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
