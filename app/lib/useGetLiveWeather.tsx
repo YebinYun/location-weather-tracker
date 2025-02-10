@@ -1,22 +1,24 @@
+"use client";
+
+import { useMemo } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import useLocationStore from "../store/useLocationStore";
 import { dfs_xy_conv } from "../hooks/useCoordinateTransformer";
-import { useMemo } from "react";
 
-// 날씨 정보 받아오는 api
-const useGetWeather = () => {
+// 주간 날씨 정보 받아오는 api
+const useGetLiveWeather = () => {
   const { location } = useLocationStore();
 
   const result = dfs_xy_conv("toXY", location.latitude, location.longitude); // 위도, 경도
 
-  const getWeatherQuerykey = useMemo(
-    () => ["weather", location.latitude, location.longitude],
+  const getLiveWeatherQuerykey = useMemo(
+    () => ["liveWeather", location.latitude, location.longitude],
     [location.latitude, location.longitude]
   );
 
-  const getWeatherData = async () => {
+  const getLiveWeatherData = async () => {
     if (!location.latitude || !location.longitude) return {};
-    return await fetch(`/api/weather?nx=${result.x}&ny=${result.y}`)
+    return await fetch(`/api/liveWeather?nx=${result.x}&ny=${result.y}`)
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
@@ -26,12 +28,12 @@ const useGetWeather = () => {
       });
   };
 
-  const { data: weatherData } = useSuspenseQuery({
-    queryKey: getWeatherQuerykey,
-    queryFn: getWeatherData,
+  const { data: liveWeatherData } = useSuspenseQuery({
+    queryKey: getLiveWeatherQuerykey,
+    queryFn: getLiveWeatherData,
   });
 
-  return { weatherData };
+  return { liveWeatherData };
 };
 
-export default useGetWeather;
+export default useGetLiveWeather;
