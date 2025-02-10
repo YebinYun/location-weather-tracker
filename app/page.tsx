@@ -1,7 +1,7 @@
 import "./styles/page.css";
 import CurrentWeather from "./components/CurrentWeather";
 import WeeklyForecast from "./components/WeeklyForecast";
-import HourlyForecast from "./components/HourlyForecast";
+import LiveWeather from "./components/LiveWeather";
 import { Suspense } from "react";
 import Skeleton from "./loading";
 import CurrentWeatherSkeleton from "./components/CurrentWeather/CurrentWeatherSkeleton";
@@ -16,7 +16,7 @@ export default function Page() {
         <WeeklyForecast />
       </Suspense>
       <Suspense fallback={<Skeleton w={100} h={200} wUnit={"%"} />}>
-        <HourlyForecast />
+        <LiveWeather />
       </Suspense>
     </main>
   );
