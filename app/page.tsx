@@ -13,10 +13,10 @@ export default function Page() {
         <CurrentWeather />
       </Suspense>
       <Suspense fallback={<Skeleton w={100} h={200} wUnit={"%"} />}>
-        <WeeklyForecast />
+        <LiveWeather />
       </Suspense>
       <Suspense fallback={<Skeleton w={100} h={200} wUnit={"%"} />}>
-        <LiveWeather />
+        <WeeklyForecast />
       </Suspense>
     </main>
   );
