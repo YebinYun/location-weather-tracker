@@ -1,0 +1,17 @@
+.live-weather {
+  width: 100%;
+  overflow: hidden;
+  .title {
+    font-size: 24px;
+  }
+  .live-weather-table {
+    width: 100%;
+    border-spacing: 0;
+    text-align: center;
+    margin-top: 30px;
+
+    .data-header {
+      padding: 0 20px;
+    }
+  }
+}
