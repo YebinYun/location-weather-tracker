@@ -111,7 +111,12 @@ export async function GET(req) {
       temperature: limitedData.temperature[index],
       wind: limitedData.wind[index],
     }));
-    if (!resultData) return [];
+    if (resultData.length === 0) {
+      return NextResponse.json(
+        { message: "No data available" },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json(resultData);
   } catch (error) {
