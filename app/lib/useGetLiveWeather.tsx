@@ -17,7 +17,8 @@ const useGetLiveWeather = () => {
   );
 
   const getLiveWeatherData = async () => {
-    if (!location.latitude || !location.longitude) return {};
+    if (!location.latitude || !location.longitude) return [];
+
     return await fetch(`/api/liveWeather?nx=${result.x}&ny=${result.y}`)
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
