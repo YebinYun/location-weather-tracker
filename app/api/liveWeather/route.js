@@ -93,18 +93,27 @@ export async function GET(req) {
       }
     );
     const limitedData = {
-      time: filteredData.time.slice(0, 24),
-      temperature: filteredData.temperature.slice(0, 24),
+      time: filteredData.time.slice(0, 30),
+      temperature: ["", ...filteredData.temperature.slice(1, 30)],
       precipitationProbability: filteredData.precipitationProbability.slice(
         0,
-        24
+        30
       ),
-      precipitation: filteredData.precipitation.slice(0, 24),
-      wind: filteredData.wind.slice(0, 24),
-      humidity: filteredData.humidity.slice(0, 24),
+      precipitation: filteredData.precipitation.slice(0, 30),
+      wind: filteredData.wind.slice(0, 30),
+      humidity: filteredData.humidity.slice(0, 30),
     };
 
-    return NextResponse.json(limitedData);
+    const resultData = limitedData?.time?.map((t, index) => ({
+      time: t,
+      humidity: limitedData.humidity[index],
+      precipitationProbability: limitedData.precipitationProbability[index],
+      temperature: limitedData.temperature[index],
+      wind: limitedData.wind[index],
+    }));
+    if (!resultData) return [];
+
+    return NextResponse.json(resultData);
   } catch (error) {
     console.error(error);
     return NextResponse.json(
